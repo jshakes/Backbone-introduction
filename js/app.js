@@ -174,6 +174,10 @@ BI.views.Slideshow = (function(_super) {
 
   Slideshow.prototype.curr_index = 0;
 
+  Slideshow.prototype.events = {
+    "click": "next_slide"
+  };
+
   Slideshow.prototype.initialize = function() {
     this.$el = $(".slides-container");
     return this.bind_events();

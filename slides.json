@@ -2,7 +2,7 @@
   {
     "id" : 1,
     "title" : "An introduction to Backbone",
-    "footnotes": "James Shakespeare @ Big Human<br />2nd October 2013"
+    "footnotes": "James Shakespeare @ Big Human<br />October 3, 2013"
   },
   {
     "id" : 2,
@@ -52,7 +52,7 @@
   {
     "id" : 11,
     "title" : "Resources",
-    "content" : "<ul><li><em>Backbone Fundamentals </em>by Addy Osmani <a href=\"https://github.com/addyosmani/backbone-fundamentals\" target=\"_blank\">https://github.com/addyosmani/backbone-fundamentals</a></li><li><em>Getting Started with Backbone</em>, NetTuts <a href=\"http://net.tutsplus.com/tutorials/javascript-ajax/getting-started-with-backbone-js/\" target=\"_blank\">http://net.tutsplus.com/tutorials/javascript-ajax/getting-started-with-backbone-js/</a></li><li><em>Building Modular Web Applications with Backbone.js and RequireJS <a href=\"http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/\" target=\"_blank\">http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/</a></em></li></ul>"    
+    "content" : "<ul><li>This slideshow <a href=\"https://github.com/jshakes/Backbone-introduction\">https://github.com/jshakes/Backbone-introduction</a></li><li><em>Backbone Fundamentals </em>by Addy Osmani <a href=\"https://github.com/addyosmani/backbone-fundamentals\" target=\"_blank\">https://github.com/addyosmani/backbone-fundamentals</a></li><li><em>Getting Started with Backbone</em>, NetTuts <a href=\"http://net.tutsplus.com/tutorials/javascript-ajax/getting-started-with-backbone-js/\" target=\"_blank\">http://net.tutsplus.com/tutorials/javascript-ajax/getting-started-with-backbone-js/</a></li><li><em>Building Modular Web Applications with Backbone.js and RequireJS <a href=\"http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/\" target=\"_blank\">http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/</a></em></li></ul>"    
   },
   {
     "id" : 12,

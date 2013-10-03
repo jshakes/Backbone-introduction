@@ -5,6 +5,10 @@ body{
   -webkit-font-smoothing: antialiased;
 }
 
+.slides-container{
+  cursor: pointer;
+}
+
 .slide{
   background: #0D2258;
   position: absolute;

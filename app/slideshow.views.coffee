@@ -1,6 +1,8 @@
 class BI.views.Slideshow extends Backbone.View
 
   curr_index : 0 # A counter for keeping track of which slide we're on
+  events : 
+    "click" : "next_slide"
 
   initialize : ->
 
