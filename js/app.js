@@ -70,7 +70,9 @@ BI.views.Slide = (function(_super) {
     } else {
       this.template = BI.templates["slide-default"];
     }
-    return this.render();
+    return this.listenTo(this.model.collection.view, "slideshow:render", function() {
+      return this.render();
+    });
   };
 
   Slide.prototype.render = function() {
@@ -102,10 +104,15 @@ BI.collections.Slideshow = (function(_super) {
   Slideshow.prototype.url = "slides.json";
 
   Slideshow.prototype.initialize = function() {
+    var _this = this;
     this.view = new BI.views.Slideshow({
       collection: this
     });
-    return this.fetch();
+    return this.fetch({
+      success: function() {
+        return _this.view.render();
+      }
+    });
   };
 
   return Slideshow;
@@ -124,12 +131,11 @@ BI.views.Slideshow = (function(_super) {
     return _ref;
   }
 
-  Slideshow.prototype.index = 0;
+  Slideshow.prototype.curr_index = 0;
 
   Slideshow.prototype.initialize = function() {
     this.$el = $(".slides-container");
-    this.max_index = this.collection.models.length - 1;
-    return this.render();
+    return this.bind_events();
   };
 
   Slideshow.prototype.bind_events = function() {
@@ -145,36 +151,48 @@ BI.views.Slideshow = (function(_super) {
   };
 
   Slideshow.prototype.previous_slide = function() {
-    this.index--;
-    if (this.index < this.max_index) {
-      return this.index = 0;
+    this.curr_index--;
+    if (this.curr_index < 0) {
+      return this.curr_index = 0;
     } else {
-      return this.render();
+      return this.recalculate();
     }
   };
 
   Slideshow.prototype.next_slide = function() {
-    this.index++;
-    if (this.index > this.max_index) {
-      return this.index = this.max_index;
+    this.curr_index++;
+    if (this.curr_index > this.max_index) {
+      return this.curr_index = this.max_index;
     } else {
-      return this.render();
+      return this.recalculate();
     }
   };
 
   Slideshow.prototype.render = function() {
-    var _this = this;
-    return _.each(this.$items, function($el, i) {
-      if (i < _this.curr_index) {
-        $el.addClass('passed').removeClass("current upcoming");
+    this.trigger("slideshow:render");
+    this.max_index = this.collection.models.length - 1;
+    return this.recalculate();
+  };
+
+  Slideshow.prototype.recalculate = function() {
+    var i, model, _i, _len, _ref1, _results;
+    _ref1 = this.collection.models;
+    _results = [];
+    for (i = _i = 0, _len = _ref1.length; _i < _len; i = ++_i) {
+      model = _ref1[i];
+      if (i < this.curr_index) {
+        model.view.$el.addClass('passed').removeClass("current upcoming");
       }
-      if (i === _this.curr_index) {
-        $el.addClass('current').removeClass("passed upcoming").trigger('isCurrent');
+      if (i === this.curr_index) {
+        model.view.$el.addClass('current').removeClass("passed upcoming").trigger('isCurrent');
       }
-      if (i > _this.curr_index) {
-        return $el.addClass('upcoming').removeClass("passed current");
+      if (i > this.curr_index) {
+        _results.push(model.view.$el.addClass('upcoming').removeClass("passed current"));
+      } else {
+        _results.push(void 0);
       }
-    });
+    }
+    return _results;
   };
 
   return Slideshow;

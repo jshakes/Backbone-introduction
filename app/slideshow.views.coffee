@@ -1,12 +1,11 @@
 class BI.views.Slideshow extends Backbone.View
 
-  index : 0 # A counter for keeping track of which slide we're on
+  curr_index : 0 # A counter for keeping track of which slide we're on
 
   initialize : ->
 
     @$el = $(".slides-container")
-    @max_index = @collection.models.length - 1
-    @render()
+    @bind_events()
   
   bind_events : ->
 
@@ -22,28 +21,34 @@ class BI.views.Slideshow extends Backbone.View
 
   previous_slide : ->
 
-    @index--
-    if @index < @max_index
-      @index = 0
+    @curr_index--
+    if @curr_index < 0
+      @curr_index = 0
     else
-      @render()
+      @recalculate()
 
   next_slide : ->
 
-    @index++
-    if @index > @max_index
-      @index = @max_index
+    @curr_index++
+    if @curr_index > @max_index
+      @curr_index = @max_index
     else
-      @render()
+      @recalculate()
 
   render : ->
 
+    @trigger "slideshow:render"
+    @max_index = @collection.models.length - 1
+    @recalculate()
+
+  recalculate : ->
+
     # Thanks to Jeff for this beautifully simple gallery functionality!
 
-    _.each  @$items, ($el, i) =>
+    for model, i in @collection.models
       if i < @curr_index
-        $el.addClass('passed').removeClass "current upcoming"
+        model.view.$el.addClass('passed').removeClass "current upcoming"
       if i == @curr_index
-        $el.addClass('current').removeClass("passed upcoming").trigger('isCurrent')
+        model.view.$el.addClass('current').removeClass("passed upcoming").trigger('isCurrent')
       if i > @curr_index
-        $el.addClass('upcoming').removeClass "passed current"
+        model.view.$el.addClass('upcoming').removeClass "passed current"

@@ -11,7 +11,8 @@ class BI.views.Slide extends Backbone.View
       # Otherwise just use the default slide
       @template = BI.templates["slide-default"]
 
-    @render()
+    @listenTo @model.collection.view, "slideshow:render", ->
+      @render()
 
   render : ->
   

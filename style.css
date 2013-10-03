@@ -2,6 +2,7 @@ body{
   font-family: "Helvetica", Arial;
   font-size: 16px;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 .slide{
@@ -9,12 +10,40 @@ body{
   position: absolute;
   height: 80%;
   width: 80%;
-  font-size: 2em;
   color: white;
   padding: 10%;
+}
+
+.slide .content{
+  font-size: 1.5em;
+}
+
+.slide .footnotes{
+  font-size: 1em;
+}
+
+.slide.current{
+  z-index: 3;
+}
+
+.slide.passed{
+  z-index: 1;
+}
+
+.slide.upcoming{
+  z-index: 2;
 }
 
 h1, h2, h3, h4, h5{
   font-weight: lighter;
   font-family: courier;
+  font-size: 1.2em;
+}
+
+h1{
+  font-size: 4em;
+}
+
+h2{
+  font-size: 3em;
 }

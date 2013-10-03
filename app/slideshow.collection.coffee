@@ -8,4 +8,8 @@ class BI.collections.Slideshow extends Backbone.Collection
     @view = new BI.views.Slideshow
       collection : @
 
-    @fetch()
+    @fetch
+      success : =>
+        @view.render()
+      
+
