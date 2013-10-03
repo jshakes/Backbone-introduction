@@ -11,6 +11,51 @@
   },
   {
     "id" : 3,
+    "title" : "What isn't Backbone?",
+    "content" : "<p>It is not a replacement for jQuery. In fact it is designed to work with it.</p><p>It is not ideal for applications in which most of the heavy-lifting of data is done by the server</p><p>It is not going to provide you with much additional UI functionality</p>"
+  },
+  {
+    "id" : 4,
+    "title" : "Models",
+    "content" : "<p>Models contain and manage data for individual entities.</p><p>Models typically belong to collections and have views, but this is not always the case.</p><p>They are created by extending Backbone.Model</p>"
+  },
+  {
+    "id" : 5,
+    "title" : "Views",
+    "content" : "<p>Views manage the logic and rendering of UI components.</p><p>Views are typically bound to either a model or a collection, and interface with these objects to handle I/O to the DOM</p><p>Unlike traditional MVC frameworks, views in Backbone contain logic as opposed to template data.</p><p>If a template rendering engine is being used, this should be managed from the view (more on this later)</p>"
+  },
+  {
+    "id" : 6,
+    "title" : "Collections",
+    "content" : "<p>Collections contain models and provide us with a number of methods for managing them, such as add, get, remove, sort etc.</p><p>Collections are particularly useful when it comes to syncing a set of models with a server endpoint (more on this later).</p>"
+  },
+  {
+    "id" : 7,
+    "title" : "Events",
+    "content" : "<p>Backbone comes with built in event listening and triggering functionality, as well as a wealth of native events we can listen for.</p><p>Events are especially useful when we want to wait for certain conditions to be met before performing certain functionality, eg. waiting for an AJAX request from a server to finish.</p><p>Some examples of native events include &#8220;add&#8221; when a model is added to a collection, &#8220;change&#8221; when a model&#8217;s attributes have changed and &#8220;sync&#8221; when a model or collection has successfully synced with the server.</p><p>Writing custom events and listeners is really simple, we just use the listenTo and trigger methods we get with any Backbone object.</p>"
+  },
+  {
+    "id" : 8,
+    "title" : "Templates",
+    "content" : "<p>While Underscore does have templating functionality, Backbone does not force us to use any particular templates, nor does it assume you will even want them.</p><p>For the majority of scenarios though, templates make rendering views much easier. From the view we are able to pass in the models attribute object and the templating language will do the rest.</p><p>Mustache and Handlebars are two Backbone-friendly template languages; there are plenty more.</p>"
+  },
+  {
+    "id" : 9,
+    "title" : "Syncing and Persistence",
+    "content" : "<p>Backbone comes with plenty of functionality for dealing with RESTful APIs. We are able to get, put and delete data to an endpoint to keep our application and the server in sync.</p><p>Models and collections can be given a URL property that lets us communicate with the server and propagate changes. With a URL set, we are able to use functions like sync, fetch, destroy and create to keep our application in a persistent state.</p>"
+  },
+  {
+    "id" : 10,
+    "title" : "Routers and History",
+    "content" : "<p>We can also use Backbone to keep the browser history in sync with changes in our application, and similarly to handle incoming URLs and perform actions accordingly.</p><p>Backbone.History is a global router that keeps track of URL changes and supports HTML5 pushState, while falling back to a hashbang (#!) solution for older browsers.</p><p>We can create our own routers to handle client-side pages, or to set up callbacks on certain URLs being loaded.</p><p>Routers in Backbone also let us use regular expressions to listen for URL patterns, and we can also pass variables from URLs into callbacks.</p>"    
+  },
+  {
+    "id" : 11,
+    "title" : "Resources",
+    "content" : "<ul><li><em>Backbone Fundamentals </em>by Addy Osmani <a href=\"https://github.com/addyosmani/backbone-fundamentals\" target=\"_blank\">https://github.com/addyosmani/backbone-fundamentals</a></li><li><em>Getting Started with Backbone</em>, NetTuts <a href=\"http://net.tutsplus.com/tutorials/javascript-ajax/getting-started-with-backbone-js/\" target=\"_blank\">http://net.tutsplus.com/tutorials/javascript-ajax/getting-started-with-backbone-js/</a></li><li><em>Building Modular Web Applications with Backbone.js and RequireJS <a href=\"http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/\" target=\"_blank\">http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/</a></em></li></ul>"    
+  },
+  {
+    "id" : 12,
     "title" : "Questions?"
   }
 ]

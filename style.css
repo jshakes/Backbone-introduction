@@ -18,6 +18,16 @@ body{
   margin: 0 0 1em;
 }
 
+.slide a{
+  color: white;
+}
+
+.slide ul{
+  padding: 0;
+}
+.slide ul li{
+  margin: 0 0 1.5em;
+}
 .slide .content{
   font-size: 1.5em;
 }
