@@ -4,12 +4,7 @@ class BI.views.Slide extends Backbone.View
 
   initialize : ->
     
-    if false
-      # If it's the first slide, use the title slide template
-      @template = BI.templates["slide-title"]
-    else
-      # Otherwise just use the default slide
-      @template = BI.templates["slide-default"]
+    @template = BI.templates["slide-default"]
 
     @listenTo @model.collection.view, "slideshow:render", ->
       @render()
