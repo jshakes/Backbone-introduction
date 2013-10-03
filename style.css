@@ -14,6 +14,10 @@ body{
   padding: 10%;
 }
 
+.slide p{
+  margin: 0 0 1em;
+}
+
 .slide .content{
   font-size: 1.5em;
 }

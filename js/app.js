@@ -17,7 +17,9 @@ BI.views.App = (function(_super) {
       src = $(this).html();
       return BI.templates[name] = Handlebars.compile(src);
     });
-    return this.slides = new BI.collections.Slideshow;
+    this.slides = new BI.collections.Slideshow;
+    this.router = new BI.Router;
+    return this.trigger("application:init");
   };
 
   return App;
@@ -25,8 +27,37 @@ BI.views.App = (function(_super) {
 })(Backbone.View);
 
 $(function() {
-  return BI.application = new BI.views.App;
+  BI.application = new BI.views.App;
+  return Backbone.history.start({
+    pushState: false
+  });
 });
+
+var _ref,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+BI.Router = (function(_super) {
+  __extends(Router, _super);
+
+  function Router() {
+    _ref = Router.__super__.constructor.apply(this, arguments);
+    return _ref;
+  }
+
+  Router.prototype.routes = {
+    "slide/:slide": "go_to_slide"
+  };
+
+  Router.prototype.go_to_slide = function(slide) {
+    var index;
+    index = slide - 1;
+    return BI.application.slides.view.go_to(index);
+  };
+
+  return Router;
+
+})(Backbone.Router);
 
 var _ref,
   __hasProp = {}.hasOwnProperty,
@@ -44,6 +75,10 @@ BI.models.Slide = (function(_super) {
     return this.view = new BI.views.Slide({
       model: this
     });
+  };
+
+  Slide.prototype.url = function() {
+    return "slide/" + this.id;
   };
 
   return Slide;
@@ -108,6 +143,12 @@ BI.collections.Slideshow = (function(_super) {
     this.view = new BI.views.Slideshow({
       collection: this
     });
+    this.listenTo(this, "slideshow:recalculate", function() {
+      this.current_slide = this.at(this.view.curr_index);
+      return BI.application.router.navigate(this.current_slide.url(), {
+        silent: true
+      });
+    });
     return this.fetch({
       success: function() {
         return _this.view.render();
@@ -168,16 +209,21 @@ BI.views.Slideshow = (function(_super) {
     }
   };
 
-  Slideshow.prototype.render = function() {
-    this.trigger("slideshow:render");
-    this.max_index = this.collection.models.length - 1;
+  Slideshow.prototype.go_to = function(slide) {
+    this.curr_index = slide;
     return this.recalculate();
   };
 
+  Slideshow.prototype.render = function() {
+    this.trigger("slideshow:render");
+    this.max_index = this.collection.models.length - 1;
+    this.recalculate();
+    return this.trigger("slideshow:rendered");
+  };
+
   Slideshow.prototype.recalculate = function() {
-    var i, model, _i, _len, _ref1, _results;
+    var i, model, _i, _len, _ref1;
     _ref1 = this.collection.models;
-    _results = [];
     for (i = _i = 0, _len = _ref1.length; _i < _len; i = ++_i) {
       model = _ref1[i];
       if (i < this.curr_index) {
@@ -187,12 +233,10 @@ BI.views.Slideshow = (function(_super) {
         model.view.$el.addClass('current').removeClass("passed upcoming").trigger('isCurrent');
       }
       if (i > this.curr_index) {
-        _results.push(model.view.$el.addClass('upcoming').removeClass("passed current"));
-      } else {
-        _results.push(void 0);
+        model.view.$el.addClass('upcoming').removeClass("passed current");
       }
     }
-    return _results;
+    return this.collection.trigger("slideshow:recalculate");
   };
 
   return Slideshow;

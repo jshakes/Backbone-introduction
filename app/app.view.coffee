@@ -14,7 +14,13 @@ class BI.views.App extends Backbone.View
 
     @slides = new BI.collections.Slideshow
 
+    @router = new BI.Router
+
+    @trigger "application:init"
+
 $ ->
 
   BI.application = new BI.views.App
 
+  Backbone.history.start
+    pushState: false

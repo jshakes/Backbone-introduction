@@ -35,11 +35,17 @@ class BI.views.Slideshow extends Backbone.View
     else
       @recalculate()
 
+  go_to : (slide) ->
+
+    @curr_index = slide
+    @recalculate()
+
   render : ->
 
     @trigger "slideshow:render"
     @max_index = @collection.models.length - 1
     @recalculate()
+    @trigger "slideshow:rendered"
 
   recalculate : ->
 
@@ -52,3 +58,5 @@ class BI.views.Slideshow extends Backbone.View
         model.view.$el.addClass('current').removeClass("passed upcoming").trigger('isCurrent')
       if i > @curr_index
         model.view.$el.addClass('upcoming').removeClass "passed current"
+
+    @collection.trigger "slideshow:recalculate"

@@ -6,6 +6,11 @@
   },
   {
     "id" : 2,
+    "title" : "What is Backbone?",
+    "content" : "<p>Backbone is a front-end framework that provides common client-side functionality for rich web applications.</p><p>It runs on Underscore, a utility-belt JS library.</p><p>It is based on an MVC architecture, where M = model, V = view and C = <em>collection</em></p>"
+  },
+  {
+    "id" : 3,
     "title" : "Questions?"
   }
 ]
