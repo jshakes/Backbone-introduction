@@ -3,9 +3,11 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
     coffee:
+      options:
+        bare: true
       compile:
           files:
-            "js/app.js" : "app/**/*.coffee"
+            "js/app.js" : ["app/**/*.coffee"]
     bower: 
       install: {}
     connect:
@@ -15,14 +17,15 @@ module.exports = (grunt) ->
     concat : 
       vendors : 
         src : [
-          "lib/jquery/jquery.min.js"
+          "lib/jquery/jquery.js"
+          "lib/underscore/underscore-min.js"
           "lib/backbone/backbone-min.js"
           "lib/handlebars/handlebars.js"
         ]
         dest : "js/vendors.js"
     watch : 
       compile_coffee:
-        files: ["app/**/*.coffee"]
+        files: ["app/*.coffee"]
         tasks: ["coffee"]
 
   grunt.loadNpmTasks "grunt-contrib-concat"
