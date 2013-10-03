@@ -1,0 +1,21 @@
+{
+  "name": "Backbone-introduction",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jshakes/Backbone-introduction",
+  "authors": [
+    "James Shakespeare <j@jshakespeare.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.0.0",
+    "handlebars": "~1.0.0",
+    "jquery": "~2.0.3"
+  }
+}
